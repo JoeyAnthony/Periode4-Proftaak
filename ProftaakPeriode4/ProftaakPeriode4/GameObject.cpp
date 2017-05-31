@@ -6,7 +6,7 @@ GameObject::GameObject(std::vector<GameObject *> * gameObjects, Vec3f position, 
 	_lighting = true;
 	_position = position;
 	_rotation = rotation;
-    _gameObjects = gameObjects;
+    _parentList = gameObjects;
 	_scale = scale;
 }
 
@@ -16,8 +16,6 @@ void GameObject::Update(float deltaTime)
 	{
 		component->Update(deltaTime);
 	}
-
-	if (_drawComponent != nullptr) _drawComponent->Update(deltaTime);
 }
 
 void GameObject::LateUpdate(float deltaTime)
@@ -65,10 +63,8 @@ void GameObject::SetLighting(bool lighting)
 
 void GameObject::Draw() const
 {
-	// Return if there is no DrawComponent
-	if(_drawComponent == nullptr) return;
-
-	_drawComponent->Draw();
+	for (Component * component : _components)
+		component->Draw();
 }
 
 Component * GameObject::GetComponent(ComponentID id)
@@ -89,12 +85,6 @@ void GameObject::AddComponent(Component * component)
 {
 	component->SetParent(this);
 	_components.push_back(component);
-
-	// If the GameObject does not have a DrawComponent yet, add the new component as
-	// A draw component. if the new component is not a draw component, this GameObjects
-	// Draw component will simply be nullptr due to the dynamic_cast
-	if (_drawComponent == nullptr)
-		_drawComponent = dynamic_cast<DrawComponent*>(component);
 }
 
 bool GameObject::RemoveComponent(Component* component)

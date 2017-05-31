@@ -1,4 +1,5 @@
 #include "CollisionComponent.h"
+#include <GL/freeglut.h>
 
 Hitbox::Hitbox(Vec3f dimensions, Vec3f offset)
 {

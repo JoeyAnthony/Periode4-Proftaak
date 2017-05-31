@@ -15,9 +15,11 @@ enum ComponentID
 	LANE_OBSTACLE_COMPONENT,
 	PLAYER_COMPONENT,
 	LANE_COMPONENT,
+	LANE_OBSTACLE_GENERATOR,
+	ASTEROID_COMPONENT,
+	ROTATE_COMPONENT,
     LANE_GENERATOR_COMPONENT,
     POWER_UP_COMPONENT,
-	LANE_OBSTACLE_GENERATOR
 };
 
 class Component
@@ -43,6 +45,8 @@ public:
 	// has been called
 	// @param float deltaTime: the time in milliseconds between the current and last frame
 	virtual void LateUpdate(float deltaTime);
+
+	virtual void Draw();
 
 	// Set the parent GameObject for this component
 	// This is usefull, because this allows the component

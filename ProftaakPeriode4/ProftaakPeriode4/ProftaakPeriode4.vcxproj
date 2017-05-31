@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AsteroidComponent.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CollisionComponent.cpp" />
@@ -165,9 +166,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshDrawComponent.cpp" />
+    <ClInclude Include="AsteroidComponent.h" />
     <ClInclude Include="DrawComponent.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
+    <ClCompile Include="RotateComponent.cpp" />
     <ClCompile Include="PowerUpComponent.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Text.cpp" />
@@ -194,6 +197,7 @@
     <ClInclude Include="LifeUp.h" />
     <ClInclude Include="ObstaclePatterns.h" />
     <ClInclude Include="PlayerComponent.h" />
+    <ClInclude Include="RotateComponent.h" />
     <ClInclude Include="PowerUpComponent.h" />
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="CameraComponent.h" />

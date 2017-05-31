@@ -24,6 +24,82 @@ float& Vec3f::operator [](int index)
 	return v[index];
 }
 
+Vec3f Vec3f::operator-(const Vec3f& other) const
+{
+	return Vec3f(this->x - other.x, this->y - other.y, this->z - other.z);
+}
+
+void Vec3f::operator-=(const Vec3f& other)
+{
+	x -= other.x;
+	y -= other.y;
+	z -= other.z;
+}
+
+Vec3f Vec3f::operator+(const Vec3f& other) const
+{
+	return Vec3f(this->x + other.x, this->y + other.y, this->z + other.z);
+}
+
+void Vec3f::operator+=(const Vec3f& other)
+{
+	x += other.x;
+	y += other.y;
+	z += other.z;
+}
+
+Vec3f Vec3f::operator-(const float& number) const
+{
+	return Vec3f(x - number, y - number, z - number);
+}
+
+void Vec3f::operator-=(const float& number)
+{
+	x -= number;
+	y -= number;
+	z -= number;
+}
+
+Vec3f Vec3f::operator+(const float& number) const
+{
+	return Vec3f(x + number, y + number, z + number);
+}
+
+void Vec3f::operator+=(const float& number)
+{
+	x += number;
+	y += number;
+	z += number;
+}
+
+Vec3f Vec3f::operator/(const float& number) const
+{
+	return Vec3f(x / number, y / number, z / number);
+}
+
+void Vec3f::operator/=(const float& number)
+{
+	x /= number;
+	y /= number;
+	z /= number;
+}
+
+Vec3f Vec3f::operator*(const float& number) const
+{
+	return {
+		x * number,
+		y * number,
+		z * number
+	};
+}
+
+void Vec3f::operator*=(const float& number)
+{
+	x *= number;
+	y *= number;
+	z *= number;
+}
+
 Vec2f::Vec2f(float x, float y)
 {
 	this->x = x;

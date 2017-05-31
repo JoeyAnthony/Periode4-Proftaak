@@ -7,7 +7,7 @@
 #include "Vec.h"
 #include "Input.h"
 
-CameraComponent::CameraComponent(float  width, float height, float nearPlane, float farPlane, float fov)
+CameraComponent::CameraComponent(float  width, float height, float nearPlane, float farPlane, float fov, bool useKeys)
 : Component(CAMERA_COMPONENT)
 {
 	_screenWidth = width;
@@ -17,6 +17,7 @@ CameraComponent::CameraComponent(float  width, float height, float nearPlane, fl
 	_farPlane = farPlane;
 
 	_fov = fov;
+	_useKeys = useKeys;
 }
 
 void CameraComponent::Move(float angle, float fac)
@@ -40,24 +41,25 @@ void CameraComponent::Update(float deltaTime)
 	const bool * keys = Keyboard::GetKeyboard();
 
 	const float speed = 10.0f;
-	if (keys['a']) Move(0, deltaTime*speed);
-	if (keys['d']) Move(180, deltaTime*speed);
-	if (keys['w']) Move(90, deltaTime*speed);
-	if (keys['s']) Move(270, deltaTime*speed);
-	if (keys['q']) Up(deltaTime*-speed);
-	if (keys['e']) Up(deltaTime*speed);
-	if (keys[KEYBOARD_KEY_ESC]) exit(0); 
+	if (_useKeys) {
+		if (keys['a']) Move(0, deltaTime*speed);
+		if (keys['d']) Move(180, deltaTime*speed);
+		if (keys['w']) Move(90, deltaTime*speed);
+		if (keys['s']) Move(270, deltaTime*speed);
+		if (keys['q']) Up(deltaTime*-speed);
+		if (keys['e']) Up(deltaTime*speed);
 
-
-	// Calculate mouse movement and reset mouse
-	float dx = float(mousePos.x) - _screenWidth/ 2;
-	float dy = float(mousePos.y) - _screenHeight/ 2;
-	if ((dx != 0 || dy != 0) && abs(dx) < 400 && abs(dy) < 400)
-	{
-		_parent->_rotation.y += dx / 10.0f;
-		_parent->_rotation.x += dy / 10.0f;
-		glutWarpPointer(int(_screenWidth / 2), int(_screenHeight / 2));
+		// Calculate mouse movement and reset mouse
+		float dx = float(mousePos.x) - _screenWidth / 2;
+		float dy = float(mousePos.y) - _screenHeight / 2;
+		if ((dx != 0 || dy != 0) && abs(dx) < 400 && abs(dy) < 400)
+		{
+			_parent->_rotation.y += dx / 10.0f;
+			_parent->_rotation.x += dy / 10.0f;
+			glutWarpPointer(int(_screenWidth / 2), int(_screenHeight / 2));
+		}
 	}
+	if (keys[KEYBOARD_KEY_ESC]) exit(0); 	
 }
 
 void CameraComponent::ApplyCamera() const

@@ -25,7 +25,7 @@ public:
 	 * \param playerComponent pointer to the playerComponent which is used on the lanes
 	 */
 
-	LaneGeneratorComponent(int laneCount, int laneSize, std::vector<Mesh*> meshes, PlayerComponent * playerComponent);
+	LaneGeneratorComponent(int laneCount, int laneSize, float spaceBetweem, std::vector<Mesh*> meshes, GameObject * playerObject);
 	/**
 	 * \brief Destructor
 	 * todo implement

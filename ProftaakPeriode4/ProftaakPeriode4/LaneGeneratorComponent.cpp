@@ -13,13 +13,11 @@
 
 float meshTime = 0.0f;
 
-LaneGeneratorComponent::LaneGeneratorComponent(int laneAmount, int laneSize, std::vector<Mesh*> meshes, PlayerComponent * playerComponent)
+LaneGeneratorComponent::LaneGeneratorComponent(int laneAmount, int laneSize, float spaceBetween, std::vector<Mesh*> meshes, GameObject * playerObject)
 {
 	srand(unsigned int(time(nullptr))); // set fully random (on time)
 						  // Testing
-//	mesh = LoadMeshFile("Assets//Models//TestCube//Cube.Cobj");
-
-	_spaceBetween = 2.0f;
+	_spaceBetween = spaceBetween;
 
 	for (int i = 0; i < laneAmount; i++)
 	{
@@ -30,18 +28,15 @@ LaneGeneratorComponent::LaneGeneratorComponent(int laneAmount, int laneSize, std
 		_lanes.push_back(lane);
 	}
 
-	// Create and add the player GameObject
-	_player = new GameObject(&_obstacles, {0.0f,0.0f,-1.0f});
+	_player = playerObject;
+	_player->_parentList = &_obstacles;
 	int laneIndex = laneAmount / 2;
 	_player->_position.x = _lanes[laneIndex]->_position.x;
-	playerComponent->_targetPosition = _player->_position;
-	_player->AddComponent(playerComponent);
-	_player->AddComponent(new CollisionComponent(Hitbox({ 2,2,2 })));
-	_player->AddComponent(new MeshDrawComponent(LoadMeshFile("Assets//Models//TestCube//Cube.Cobj"))); // todo move out of scope
-	_player->AddComponent(new VisionComponent(laneAmount));
-	LaneObstacleComponent * lanePlayer = new LaneObstacleComponent(1);
-	lanePlayer->_speed = nullptr;
-	_player->AddComponent(lanePlayer);
+	PlayerComponent * playerComponent = dynamic_cast<PlayerComponent*>(_player->GetComponent(PLAYER_COMPONENT));
+	if(playerComponent->_useOpenCV)
+		_player->AddComponent(new VisionComponent(laneAmount));
+	if(playerComponent != nullptr)
+		playerComponent->_targetPosition = _player->_position;
 	_obstacles.push_back(_player);
 }
 

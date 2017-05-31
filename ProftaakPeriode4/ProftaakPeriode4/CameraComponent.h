@@ -10,7 +10,7 @@ public:
 	// @param float nearPlane: the near clipping plane of the camera
 	// @param float farPlane: the far clipping plane of the camera
 	// @param float fov: the fov of the camera
-	CameraComponent(float width, float height, float nearPlane, float farPlane, float fov);
+	CameraComponent(float width, float height, float nearPlane, float farPlane, float fov, bool useKeys = true);
 	
 	// Destructor
 	~CameraComponent();
@@ -34,6 +34,8 @@ public:
 
 	// The camera's fov
 	float _fov;
+
+	bool _useKeys;
 private:
 	// Translate the camera horizontally
 	// @param float angle: the angle at which the camera will be translated

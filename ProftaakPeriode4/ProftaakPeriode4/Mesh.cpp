@@ -114,7 +114,8 @@ void Mesh::Draw(Vec3f position, Vec3f rotation, Vec3f scale, bool lighting)
 		glEnableClientState(GL_NORMAL_ARRAY);
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-		glBindTexture(GL_TEXTURE_2D, group._material->_texture->_id);
+		if(group._material->_texture != nullptr)
+			glBindTexture(GL_TEXTURE_2D, group._material->_texture->_id);
 
 		glVertexPointer(3, GL_FLOAT, sizeof(float) * 8, ((float*)group._vertices.data()));
 		glNormalPointer(GL_FLOAT, sizeof(float) * 8, ((float*)group._vertices.data()) + 5);

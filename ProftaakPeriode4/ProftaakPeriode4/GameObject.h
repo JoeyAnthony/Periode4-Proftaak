@@ -91,7 +91,7 @@ public:
 	/*
 	 * The component used to draw this GameObject
 	 */
-	DrawComponent * _drawComponent = nullptr;
+	std::vector<DrawComponent *> _drawComponents;
 	/*
 	* The current origin of the object
 	*/
@@ -103,7 +103,7 @@ public:
     /*
      * pointer to the vector containing all the gameObjects
      */
-    std::vector<GameObject *>* _gameObjects;
+    std::vector<GameObject *>* _parentList;
 	/*
 	 * The scale of this object
 	 */

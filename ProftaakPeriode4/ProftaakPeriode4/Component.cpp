@@ -19,6 +19,10 @@ void Component::LateUpdate(float deltaTime)
 {
 }
 
+void Component::Draw()
+{
+}
+
 void Component::SetParent(GameObject* parent)
 {
 	_parent = parent;

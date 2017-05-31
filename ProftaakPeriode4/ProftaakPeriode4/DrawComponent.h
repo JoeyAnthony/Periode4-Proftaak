@@ -22,12 +22,5 @@ public:
 	 * \brief DrawComponent Destructor
 	 */
 	~DrawComponent(){};
-
-	/**
-	 *Function for drawing to view
-	 * \brief Drawing to View
-	 * Needs to be implemented in subclasses like MeshDrawComponent
-	 */
-	virtual void Draw() = 0;
 };
 

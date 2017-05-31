@@ -13,8 +13,6 @@ MeshDrawComponent::~MeshDrawComponent()
 
 void MeshDrawComponent::Draw()
 {
-	if (_parent != nullptr) {
+	if (_parent != nullptr) 
 		_mesh->Draw(_parent->_position, _parent->_rotation, _parent->_scale, _parent->_lighting);
-		// todo implement rotationAngle!
-	}
 }

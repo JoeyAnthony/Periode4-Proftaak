@@ -15,22 +15,11 @@ public:
     // of every GameObject present in the model
     void update();
 
-    // Initialise a simple set of test objects
-    // by adding a few GameObjects to the GameObject vector
-    // NOTE: should ONLY be called AFTER an OpenGL context has been created
-    // and ONLY ONCE
-    void InitTestObjects();
-
 	/*
 	 * Initialise audio for game
 	 * Is static for not needing other data
 	 */
 	static void InitSound();
-
-	/*
-	 * Initialise the GUI elements
-	 */
-	void InitGUIElements();
 
     // Initialise the gameLogic
     // NOTE: should ONLY be called AFTER an OpenGL context has been created

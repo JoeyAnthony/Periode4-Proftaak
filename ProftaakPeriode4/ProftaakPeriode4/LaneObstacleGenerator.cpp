@@ -6,6 +6,7 @@
 #include "CollisionComponent.h"
 #include "ObstaclePatterns.h"
 #include "LaneGeneratorComponent.h"
+#include "AsteroidComponent.h"
 
 /**
  * Used for selecting a pattern, is placed here because of errors in usage (generator uses Pattern and Pattern uses generator)
@@ -36,7 +37,8 @@ void LaneObstacleGenerator::addObstacle(int laneIndex, Mesh* mesh)
 	if(*_speed != 0.0f)
 		component->_speed = _speed;
 	obstacle->AddComponent(component);
-	obstacle->AddComponent(new CollisionComponent(Hitbox({1.0f,1.0f,1.0f}), false));
+	obstacle->AddComponent(new CollisionComponent(Hitbox({2.0f,2.0f,2.0f}), false));
+	obstacle->AddComponent(new AsteroidComponent());
 
 	GameObject* lane = (*_lanes)[laneIndex];
 	//		LaneComponent * laneComponent = dynamic_cast<LaneComponent*>(lane->GetComponent(LANE_COMPONENT));

@@ -16,6 +16,24 @@ public:
 	Vec3f(Vec3f &other);
 	Vec3f(float x, float y, float z);
 	float& operator [](int);
+
+	Vec3f operator -(const Vec3f&) const;
+	void operator -=(const Vec3f&);
+
+	Vec3f operator +(const Vec3f&) const;
+	void operator +=(const Vec3f&);
+
+	Vec3f operator -(const float&) const;
+	void operator -=(const float&);
+
+	Vec3f operator +(const float&) const;
+	void operator +=(const float&);
+
+	Vec3f operator /(const float&) const;
+	void operator /=(const float&);
+
+	Vec3f operator *(const float&) const;
+	void operator *=(const float&);
 };
 
 // 2 dimensional float matrix
